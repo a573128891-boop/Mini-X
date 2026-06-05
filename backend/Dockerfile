@@ -3,11 +3,12 @@ FROM golang:1.21-alpine AS builder
 
 WORKDIR /app
 
-# Install dependencies
+# Install git for fetching deps
 RUN apk add --no-cache git
 
-# Copy go mod files
-COPY go.mod go.sum ./
+# Copy go mod file and download dependencies
+# go mod download works without go.sum (it creates it in module cache)
+COPY go.mod ./
 RUN go mod download
 
 # Copy source code
