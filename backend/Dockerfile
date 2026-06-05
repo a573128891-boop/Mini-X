@@ -6,16 +6,15 @@ WORKDIR /app
 # Install git for fetching deps
 RUN apk add --no-cache git
 
-# Copy go mod file and download dependencies
-# go mod download works without go.sum (it creates it in module cache)
-COPY go.mod ./
+# Copy go mod and sum files first (for layer caching)
+COPY go.mod go.sum ./
 RUN go mod download
 
 # Copy source code
 COPY . .
 
 # Build
-RUN CGO_ENABLED=0 GOOS=linux go build -o server ./cmd/server
+RUN CGO_ENABLED=0 GOOS=linux go build -ldflags="-w -s" -o server ./cmd/server
 
 # Runtime stage
 FROM alpine:3.19

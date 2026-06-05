@@ -4,8 +4,6 @@ import (
 	"context"
 	"log"
 	"math"
-	"math/rand"
-	"net/http"
 	"sync"
 	"time"
 
@@ -13,7 +11,6 @@ import (
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
 	"github.com/gofiber/fiber/v2/middleware/logger"
-	"github.com/gofiber/fiber/v2/middleware/ratelimiter"
 	"github.com/redis/go-redis/v9"
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
@@ -47,7 +44,7 @@ type Tweet struct {
 	User        User      `gorm:"foreignKey:UserID" json:"user"`
 }
 
-type Follow struct {
+type FollowRelation struct {
 	FollowerID  uint      `gorm:"primaryKey" json:"follower_id"`
 	FollowingID uint      `gorm:"primaryKey" json:"following_id"`
 	CreatedAt   time.Time `json:"created_at"`
@@ -99,7 +96,7 @@ func initDB() {
 		db = nil
 		return
 	}
-	db.AutoMigrate(&User{}, &Tweet{}, &Follow{})
+	db.AutoMigrate(&User{}, &Tweet{}, &FollowRelation{})
 }
 
 func initRedis() {
@@ -403,7 +400,7 @@ func splitWords(s string) []string {
 	var words []string
 	var current []byte
 	for i := 0; i < len(s); i++ {
-		if s[i] >= 'a' && s[i] <= 'z' || s[i] >= 'A' && s[i] <= 'Z' || s[i] >= '0' && s[i] <= '9' {
+		if (s[i] >= 'a' && s[i] <= 'z') || (s[i] >= 'A' && s[i] <= 'Z') || (s[i] >= '0' && s[i] <= '9') {
 			current = append(current, s[i])
 		} else {
 			if len(current) > 0 {
@@ -566,7 +563,6 @@ func RunLoadTest(c *fiber.Ctx) error {
 	const tweetsPerUser = 10
 
 	inMemoryMutex.Lock()
-	startTime := time.Now()
 
 	// Generate users
 	for i := 0; i < numUsers; i++ {
@@ -612,7 +608,6 @@ func RunLoadTest(c *fiber.Ctx) error {
 
 	// Calculate percentiles
 	sortFloat64(postLatencies)
-	p95 := percentile(postLatencies, 0.95)
 	p99 := percentile(postLatencies, 0.99)
 
 	result := LoadTestResult{
@@ -650,6 +645,7 @@ func percentile(arr []float64, p float64) float64 {
 // ============ Main ============
 
 func main() {
+	startTime := time.Now()
 	initDB()
 	initRedis()
 	seedData()
@@ -662,13 +658,6 @@ func main() {
 	app.Use(cors.New(cors.Config{
 		AllowOrigins: "*",
 		AllowHeaders: "Origin, Content-Type, Accept",
-	}))
-
-	// Rate limiting
-	app.Use(ratelimiter.New(ratelimiter.Config{
-		Max:               300,
-		Expiration:        time.Minute,
-		LimiterMiddleware: ratelimiter.FixedWindow{},
 	}))
 
 	// Routes
@@ -700,7 +689,7 @@ func main() {
 	api.Get("/health", func(c *fiber.Ctx) error {
 		return c.JSON(fiber.Map{
 			"status":  "ok",
-			"uptime":  time.Since(time.Now()).String(),
+			"uptime":  time.Since(startTime).String(),
 			"users":   len(users),
 			"tweets":  len(tweets),
 			"clients": len(wsClients),
