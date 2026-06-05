@@ -43,3 +43,16 @@ export interface LoadTestResult {
   p99_post_ms: number;
   fanout_delay_ms: number;
 }
+
+export interface LoadTestApiResponse {
+  users?: number;
+  tweets?: number;
+  p95_timeline_ms?: number;
+  p99_post_ms?: number;
+  fanout_delay_ms?: number;
+  Users?: number;
+  Tweets?: number;
+  P95TimelineMs?: number;
+  P99PostMs?: number;
+  FanoutDelayMs?: number;
+}

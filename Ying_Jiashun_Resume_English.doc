@@ -1,0 +1,128 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>Ying Jiashun Resume</title>
+<style>
+body { font-family: Calibri, Arial, sans-serif; font-size: 11pt; line-height: 1.5; margin: 36pt; color: #222; }
+h1 { font-size: 22pt; margin: 0 0 6pt 0; }
+h2 { font-size: 14pt; margin: 18pt 0 8pt 0; border-bottom: 1px solid #999; padding-bottom: 4pt; }
+h3 { font-size: 11.5pt; margin: 12pt 0 4pt 0; }
+p { margin: 4pt 0; }
+ul { margin: 4pt 0 8pt 18pt; }
+li { margin: 2pt 0; }
+.meta { margin-bottom: 12pt; }
+.role { font-weight: bold; }
+.company-line { display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+<h1>Ying Jiashun</h1>
+<p class="meta"><strong>Frontend Engineer</strong><br/>
+Yuyao, Zhejiang, China<br/>
+Phone: 133-0584-5382<br/>
+Email: 573128891@qq.com</p>
+
+<h2>Professional Summary</h2>
+<p>Frontend Engineer with 7 years of experience building scalable web and cross-platform applications. Strong expertise in React, Vue, TypeScript, low-code platforms, data visualization, and frontend performance optimization. Experienced in delivering complex systems from architecture design to production rollout, with solid knowledge of browser internals, engineering workflows, and cross-team collaboration.</p>
+
+<h2>Work Experience</h2>
+
+<div class="company-line"><span class="role">Frontend Engineer, JD Technology</span><span>Apr 2025 - Present</span></div>
+<h3>Project: Santai Low-Code Platform</h3>
+<p><strong>Tech Stack:</strong> React, TypeScript, Zustand, Vite, Ant Design, Craft.js</p>
+<ul>
+<li>Worked on the renderer and designer modules of a low-code platform.</li>
+<li>Implemented component hot-reload support to improve development efficiency.</li>
+</ul>
+<h3>Project: Internal Visual Page Builder Platform</h3>
+<p><strong>Tech Stack:</strong> React, TypeScript, Zustand, Nx, Monaco Editor, Sucrase, Nunjucks, Prettier, Verdaccio, SSE, BroadcastChannel API</p>
+<ul>
+<li>Designed and developed an internal visual page-building platform that supports the full workflow from drag-and-drop UI design to source code generation.</li>
+<li>Rebuilt the editor state management architecture with Zustand, replacing redundant Redux boilerplate and improving rendering performance on large canvases.</li>
+<li>Designed a Monorepo architecture based on Nx to manage the Editor, Materials, and Core packages with automated build and release workflows.</li>
+<li>Built a browser-side JIT sandbox using Monaco Editor and Sucrase to support near real-time TypeScript compilation and runtime injection.</li>
+<li>Designed a schema communication protocol and standardized React material packaging, decoupling props configuration, event binding, and drag-and-drop layout.</li>
+<li>Solved cross-iframe drag-and-drop interaction issues using overlay techniques and pointer-events control.</li>
+<li>Designed a DSL-to-production-code generation pipeline using Nunjucks and Prettier to generate reusable React project code from JSON schemas.</li>
+<li>Set up a private npm registry with Verdaccio for secure material storage and version management.</li>
+<li>Built a lightweight notification center for multi-tab scenarios using SSE and BroadcastChannel, enabling real-time cross-tab synchronization while reducing server connection pressure.</li>
+</ul>
+
+<div class="company-line"><span class="role">Frontend Engineer, DiDi Chuxing</span><span>Nov 2021 - Mar 2025</span></div>
+<h3>Project: Feitian Education (Driver Training System)</h3>
+<p><strong>Tech Stack:</strong> Vue, Vuex, Vue Router, Webpack, ES6, Node.js, Vue-Resource, Element UI</p>
+<ul>
+<li>Built a professional training system for DiDi drivers covering learning content, assessments, scheduling, online study, and post-training evaluation.</li>
+<li>Developed core driver-side modules including course learning, exam answering, and video playback.</li>
+<li>Optimized mobile performance and improved the learning experience for drivers.</li>
+<li>Developed the admin-side question bank, exam paper bank, and training task distribution modules with progress tracking and data visualization.</li>
+<li>Built lazy-loading image components and short-video playback components to improve performance when handling large amounts of training materials.</li>
+<li>Participated in UI refactoring of the PC admin system to align with enterprise design standards.</li>
+</ul>
+<h3>Project: Low-Code Platform (Enterprise Module Deployment System)</h3>
+<p><strong>Tech Stack:</strong> React, Ant Design, React-Redux</p>
+<ul>
+<li>Built a modular deployment platform that allows enterprises to select functional modules by industry workflow and customize themes and menu styles.</li>
+<li>Led the migration of Semi/UI component materials.</li>
+<li>Implemented dynamic module loading and theme configuration features.</li>
+</ul>
+
+<div class="company-line"><span class="role">Frontend Engineer, Hundsun Technologies</span><span>Nov 2020 - Nov 2021</span></div>
+<h3>Project: Financial Enterprise Collaboration Platform</h3>
+<p><strong>Tech Stack:</strong> Weex, Vue, Light Framework</p>
+<ul>
+<li>Developed an enterprise collaboration platform for banks, securities firms, and funds, covering daily and weekly reports, task assignment, approval workflows, internal messaging, and staff directory features.</li>
+<li>Led development of the daily and weekly reporting system with template customization, statistics, and manager comments.</li>
+<li>Delivered cross-platform compatibility with Weex for iOS, Android, and PC.</li>
+<li>Built task assignment and approval workflow modules, including electronic signature integration, reducing approval cycle time by over 30%.</li>
+<li>Resolved multi-module build conflicts and optimized bundle size, improving mobile startup speed.</li>
+</ul>
+<h3>Project: Data Visualization Dashboard</h3>
+<p><strong>Tech Stack:</strong> Vue, ECharts, HTML, CSS</p>
+<ul>
+<li>Built financial data dashboards with pie charts, bar charts, and map-based visualizations.</li>
+<li>Handled screen resolution adaptation and large-scale data visualization rendering.</li>
+<li>Developed a reusable single sign-on component.</li>
+</ul>
+<h3>Project: Data Governance Platform</h3>
+<p><strong>Tech Stack:</strong> React, Umi, Ant Design</p>
+<ul>
+<li>Developed a visual modeling engine for database diagram generation through drag-and-drop interactions.</li>
+<li>Optimized rendering performance for large datasets.</li>
+</ul>
+
+<div class="company-line"><span class="role">Frontend Engineer, Ningbo Lexi Software Development</span><span>Aug 2018 - Nov 2020</span></div>
+<ul>
+<li><strong>Chat App:</strong> Built a social chat application similar to WeChat using uni-app, Koa.js, and Jiguang IM SDK.</li>
+<li><strong>Video Platform:</strong> Developed a customizable video player platform with React and Video.js.</li>
+<li><strong>Short Video App:</strong> Implemented video upload, playback, and interaction features with uni-app and Koa.js.</li>
+<li><strong>Online Novel Reading Platform:</strong> Built an online reading system with bookshelf management, chapter reading, and night mode using React and Ant Design.</li>
+<li><strong>Corporate Website:</strong> Developed a responsive corporate website with integrated data visualization modules.</li>
+<li><strong>Logistics Management Admin System:</strong> Built a logistics management system with order tracking and resource scheduling using Vue and Element UI.</li>
+</ul>
+
+<h2>Education</h2>
+<p><strong>Anhui Water Conservancy Technical College</strong><br/>
+Bachelor's Degree in Computer Application<br/>
+Sep 2015 - Jun 2018</p>
+<p><strong>Relevant Coursework:</strong> Java Programming, SQL Database Design, JavaScript, CSS, JSP Programming, Web Design, Computer Networks and Security, Photoshop, AutoCAD.</p>
+
+<h2>Technical Skills</h2>
+<ul>
+<li><strong>Frontend Fundamentals:</strong> HTML5, CSS3, JavaScript, Flexbox, Grid, responsive design, browser rendering, event loop, ES6+.</li>
+<li><strong>Frameworks &amp; Libraries:</strong> React, React Hooks, React Router, Redux, Vue2, Vue3, Vuex, Pinia, Vue Router, Ant Design, Element UI / Element Plus, Vant, Bootstrap.</li>
+<li><strong>Engineering &amp; Tooling:</strong> TypeScript, Vite, Webpack, Gulp, ESLint, Prettier, Git, Nx Monorepo, Monaco Editor, Nunjucks, Verdaccio.</li>
+<li><strong>Cross-Platform Development:</strong> WeChat Mini Program, uni-app, Weex, basic understanding of React Native rendering principles.</li>
+<li><strong>Data &amp; Backend Collaboration:</strong> Axios, React Query, basic knowledge of Node.js and Express, frontend-backend integration, API mocking.</li>
+<li><strong>Specialized Areas:</strong> low-code platform architecture, component/material systems, data visualization, frontend performance optimization, cross-iframe drag-and-drop, multi-tab communication with SSE and BroadcastChannel.</li>
+</ul>
+
+<h2>Self-Evaluation</h2>
+<ul>
+<li>7 years of frontend development experience with strong focus on Vue/React ecosystems, browser internals, and engineering optimization.</li>
+<li>Rich practical experience in cross-platform development, data visualization, and component-based architecture.</li>
+<li>Capable of independently driving complex projects from requirement analysis to final delivery.</li>
+<li>Strong teamwork and communication skills, with continuous interest in emerging technologies such as WebAssembly and modern frontend engineering.</li>
+</ul>
+</body>
+</html>

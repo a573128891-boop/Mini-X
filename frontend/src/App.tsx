@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import type { Tweet, AISummary, LoadTestResult } from './types';
+import type { Tweet, AISummary, LoadTestResult, LoadTestApiResponse } from './types';
 
 const API_BASE = '/api';
 
@@ -102,12 +102,21 @@ function App() {
   const runLoadTest = async () => {
     try {
       const res = await fetch(`${API_BASE}/loadtest`);
-      const data = await res.json();
-      setLoadTest(data);
+      const data: LoadTestApiResponse = await res.json();
+      setLoadTest({
+        users: data.users ?? data.Users ?? 0,
+        tweets: data.tweets ?? data.Tweets ?? 0,
+        p95_timeline_ms: data.p95_timeline_ms ?? data.P95TimelineMs ?? 0,
+        p99_post_ms: data.p99_post_ms ?? data.P99PostMs ?? 0,
+        fanout_delay_ms: data.fanout_delay_ms ?? data.FanoutDelayMs ?? 0,
+      });
     } catch (err) {
       console.error('Failed to run load test:', err);
     }
   };
+
+  const formatNumber = (value: number | undefined) => (value ?? 0).toLocaleString();
+  const formatMs = (value: number | undefined) => `${(value ?? 0).toFixed(2)}ms`;
 
   const formatTime = (dateStr: string) => {
     const date = new Date(dateStr);
@@ -290,23 +299,23 @@ function App() {
                   <div className="space-y-4">
                     <div className="flex justify-between items-center py-2 border-b border-gray-800">
                       <span className="text-gray-400">Simulated Users</span>
-                      <span className="font-mono font-bold">{loadTest.users.toLocaleString()}</span>
+                      <span className="font-mono font-bold">{formatNumber(loadTest.users)}</span>
                     </div>
                     <div className="flex justify-between items-center py-2 border-b border-gray-800">
                       <span className="text-gray-400">Total Tweets</span>
-                      <span className="font-mono font-bold">{loadTest.tweets.toLocaleString()}</span>
+                      <span className="font-mono font-bold">{formatNumber(loadTest.tweets)}</span>
                     </div>
                     <div className="flex justify-between items-center py-2 border-b border-gray-800">
                       <span className="text-gray-400">p95 Timeline Latency</span>
-                      <span className="font-mono font-bold text-green-400">{loadTest.p95_timeline_ms.toFixed(2)}ms</span>
+                      <span className="font-mono font-bold text-green-400">{formatMs(loadTest.p95_timeline_ms)}</span>
                     </div>
                     <div className="flex justify-between items-center py-2 border-b border-gray-800">
                       <span className="text-gray-400">p99 Post Latency</span>
-                      <span className="font-mono font-bold text-yellow-400">{loadTest.p99_post_ms.toFixed(2)}ms</span>
+                      <span className="font-mono font-bold text-yellow-400">{formatMs(loadTest.p99_post_ms)}</span>
                     </div>
                     <div className="flex justify-between items-center py-2">
                       <span className="text-gray-400">WebSocket Fanout</span>
-                      <span className="font-mono font-bold text-blue-400">{loadTest.fanout_delay_ms}ms</span>
+                      <span className="font-mono font-bold text-blue-400">{formatMs(loadTest.fanout_delay_ms)}</span>
                     </div>
                   </div>
                 </div>
