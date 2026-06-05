@@ -9,5 +9,16 @@ export default defineConfig({
   },
   server: {
     port: 3000,
+    proxy: {
+      '/api': {
+        target: 'https://alluring-nurturing-production.up.railway.app',
+        changeOrigin: true,
+      },
+      '/ws': {
+        target: 'https://alluring-nurturing-production.up.railway.app',
+        ws: true,
+        changeOrigin: true,
+      },
+    },
   },
 });
