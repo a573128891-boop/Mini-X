@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"math"
+	"os"
 	"sync"
 	"time"
 
@@ -706,6 +707,10 @@ func main() {
 	})
 	app.Get("/ws", websocket.New(WSHandler))
 
-	log.Println("🚀 Mini-X Timeline Engine running on http://localhost:3001")
-	app.Listen(":3001")
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "3001"
+	}
+	log.Printf("🚀 Mini-X Timeline Engine running on http://localhost:%s", port)
+	app.Listen(":" + port)
 }
